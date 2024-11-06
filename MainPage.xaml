@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CurrencyConverterApp.MainPage">
+
+    <ScrollView HorizontalOptions="Center">
+        <StackLayout VerticalOptions="Start" HorizontalOptions="Center" BackgroundColor="#EEEEEE">
+            <!-- LCD Display -->
+            <Border Stroke="Navy" StrokeThickness="2" StrokeShape="RoundRectangle 10,10,10,10" Padding="5" BackgroundColor="#EEEEEE">
+                <Label x:Name="DisplayLabel"
+                       Text="0"
+                       FontSize="32"
+                       TextColor="Black"
+                       HorizontalTextAlignment="End"
+                       VerticalOptions="Start"
+                       BackgroundColor="Silver"
+                       WidthRequest="280" />
+            </Border>
+            <Border Stroke="Navy" StrokeThickness="2" StrokeShape="RoundRectangle 10,10,10,10" Padding="5" BackgroundColor="#EEEEEE">
+                <Label x:Name="ExchangeRateLabel" FontAttributes="Bold" FontSize="24" TextColor="Black" BackgroundColor="Silver" WidthRequest="280" HeightRequest="65" FontAutoScalingEnabled="True" HorizontalTextAlignment="Center"/>
+            </Border>
+
+            <!-- Currency Selection -->
+            <StackLayout Orientation="Horizontal" BackgroundColor="#EEEEEE" WidthRequest="300" Padding="20">
+                <!--<Picker x:Name="FromCurrencyPicker"
+                        Title="Base Currency"
+                        HorizontalOptions="StartAndExpand"
+                        WidthRequest="100"
+                        SelectedIndexChanged="OnFromCurrencyChanged">
+                </Picker>-->
+
+                <!--<Label Text="AUD to" VerticalOptions="Center" HorizontalOptions="Start" />-->
+
+                <Picker x:Name="ToCurrencyPicker" 
+                    Title="AUD To "
+                    HorizontalOptions="StartAndExpand"
+                    WidthRequest="260"
+                    SelectedIndexChanged="OnToCurrencyChanged">
+                </Picker>
+            </StackLayout>
+
+            <!-- Calculator Buttons -->
+            <Grid RowSpacing="10" ColumnSpacing="10" BackgroundColor="#EEEEEE" HorizontalOptions="Center" WidthRequest="300">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Digit Buttons -->
+                <Button Grid.Row="0" Grid.Column="0" Text="1" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="0" Grid.Column="1" Text="2" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="0" Grid.Column="2" Text="3" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                                                                                                                
+                <Button Grid.Row="1" Grid.Column="0" Text="4" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="1" Grid.Column="1" Text="5" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="1" Grid.Column="2" Text="6" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                                                                                                                
+                <Button Grid.Row="2" Grid.Column="0" Text="7" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="2" Grid.Column="1" Text="8" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="2" Grid.Column="2" Text="9" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                                                                                                                
+                <Button Grid.Row="3" Grid.Column="0" Text="0" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="3" Grid.Column="3" Text="C" FontSize="Large" FontAttributes="Bold" Clicked="OnClearButtonClicked" BackgroundColor="Red" TextColor="#919598" />
+            </Grid>
+
+            <!-- Convert Button -->
+            <Button Text="Convert"
+                BackgroundColor="#00FF00"
+                TextColor="#000000"
+                FontSize="24"
+                WidthRequest="300"
+                Clicked="OnConvertButtonClicked" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
