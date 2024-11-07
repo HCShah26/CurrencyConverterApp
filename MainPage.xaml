@@ -6,15 +6,17 @@
     <ScrollView HorizontalOptions="Center">
         <StackLayout VerticalOptions="Start" HorizontalOptions="Center" BackgroundColor="#EEEEEE">
             <!-- LCD Display -->
+            <Label x:Name="BaseLabel" Text="Convert from AUD" FontAttributes="Bold" FontSize="24" TextColor="Black" HorizontalTextAlignment="Start" Background="#EEEEEE"  WidthRequest="280" />
+
             <Border Stroke="Navy" StrokeThickness="2" StrokeShape="RoundRectangle 10,10,10,10" Padding="5" BackgroundColor="#EEEEEE">
                 <Label x:Name="DisplayLabel"
-                       Text="0"
-                       FontSize="32"
-                       TextColor="Black"
-                       HorizontalTextAlignment="End"
-                       VerticalOptions="Start"
-                       BackgroundColor="Silver"
-                       WidthRequest="280" />
+                    Text="0"
+                    FontSize="32"
+                    TextColor="Black"
+                    HorizontalTextAlignment="End"
+                    VerticalOptions="Start"
+                    BackgroundColor="Silver"
+                    WidthRequest="280" />
             </Border>
             <Border Stroke="Navy" StrokeThickness="2" StrokeShape="RoundRectangle 10,10,10,10" Padding="5" BackgroundColor="#EEEEEE">
                 <Label x:Name="ExchangeRateLabel" FontAttributes="Bold" FontSize="24" TextColor="Black" BackgroundColor="Silver" WidthRequest="280" HeightRequest="65" FontAutoScalingEnabled="True" HorizontalTextAlignment="Center"/>
@@ -22,20 +24,12 @@
 
             <!-- Currency Selection -->
             <StackLayout Orientation="Horizontal" BackgroundColor="#EEEEEE" WidthRequest="300" Padding="20">
-                <!--<Picker x:Name="FromCurrencyPicker"
-                        Title="Base Currency"
-                        HorizontalOptions="StartAndExpand"
-                        WidthRequest="100"
-                        SelectedIndexChanged="OnFromCurrencyChanged">
-                </Picker>-->
 
-                <!--<Label Text="AUD to" VerticalOptions="Center" HorizontalOptions="Start" />-->
-
-                <Picker x:Name="ToCurrencyPicker" 
-                    Title="AUD To "
-                    HorizontalOptions="StartAndExpand"
-                    WidthRequest="260"
-                    SelectedIndexChanged="OnToCurrencyChanged">
+                <Picker x:Name="TargetCurrencyPicker" 
+                Title="AUD To "
+                HorizontalOptions="StartAndExpand"
+                WidthRequest="260"
+                SelectedIndexChanged="OnTargetCurrencyChanged">
                 </Picker>
             </StackLayout>
 
@@ -55,29 +49,35 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Digit Buttons -->
-                <Button Grid.Row="0" Grid.Column="0" Text="1" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
-                <Button Grid.Row="0" Grid.Column="1" Text="2" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
-                <Button Grid.Row="0" Grid.Column="2" Text="3" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
-                                                                                                                
-                <Button Grid.Row="1" Grid.Column="0" Text="4" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
-                <Button Grid.Row="1" Grid.Column="1" Text="5" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
-                <Button Grid.Row="1" Grid.Column="2" Text="6" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
-                                                                                                                
-                <Button Grid.Row="2" Grid.Column="0" Text="7" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
-                <Button Grid.Row="2" Grid.Column="1" Text="8" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
-                <Button Grid.Row="2" Grid.Column="2" Text="9" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
-                                                                                                                
-                <Button Grid.Row="3" Grid.Column="0" Text="0" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
-                <Button Grid.Row="3" Grid.Column="3" Text="C" FontSize="Large" FontAttributes="Bold" Clicked="OnClearButtonClicked" BackgroundColor="Red" TextColor="#919598" />
+                <Button Grid.Row="0" Grid.Column="0" Text="C" FontSize="Large" FontAttributes="Bold" Clicked="OnClearButtonClicked" BackgroundColor="Red" TextColor="#919598" />
+                <ImageButton Grid.Row="0" Grid.Column="1" x:Name="UpdatingButton" Source="updating.gif" />
+                <Button Grid.Row="0" Grid.Column="2" Text="à" FontFamily="Wingdings" FontSize="Large" FontAttributes="Bold" Clicked="OnBackButtonClicked" BackgroundColor="Red" TextColor="#919598" />
+                
+                <Button Grid.Row="1" Grid.Column="0" Text="1" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="1" Grid.Column="1" Text="2" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="1" Grid.Column="2" Text="3" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+
+                <Button Grid.Row="2" Grid.Column="0" Text="4" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="2" Grid.Column="1" Text="5" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="2" Grid.Column="2" Text="6" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+
+                <Button Grid.Row="3" Grid.Column="0" Text="7" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="3" Grid.Column="1" Text="8" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="3" Grid.Column="2" Text="9" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+
+                <Button Grid.Row="4" Grid.Column="0" Text="0" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="4" Grid.Column="1" Text="00" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                <Button Grid.Row="4" Grid.Column="2" Text="000" FontSize="Large" FontAttributes="Bold" Clicked="OnDigitButtonClicked" BackgroundColor="WhiteSmoke" TextColor="#919598" />
+                
             </Grid>
 
-            <!-- Convert Button -->
-            <Button Text="Convert"
-                BackgroundColor="#00FF00"
-                TextColor="#000000"
-                FontSize="24"
-                WidthRequest="300"
-                Clicked="OnConvertButtonClicked" />
+            <!-- Convert Button - NOT NEEDED ANYMORE! Left it incase I change my mind-->
+            <!--<Button Text="Convert"
+            BackgroundColor="#00FF00"
+            TextColor="#000000"
+            FontSize="24"
+            WidthRequest="300"
+            Clicked="OnConvertButtonClicked" />-->
         </StackLayout>
     </ScrollView>
 </ContentPage>
